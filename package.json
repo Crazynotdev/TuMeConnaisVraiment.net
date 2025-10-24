@@ -1,0 +1,21 @@
+{
+  "name": "TuMeConnaisVraiment-waz-moi",
+  "version": "1.0.0",
+  "description": "TuMeConnaisVraiment — quizzes personnels à partager (Waz-moi)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js"
+  },
+  "author": "Crazynotdev",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
