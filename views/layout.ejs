@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title || 'TuMeConnaisVraiment' %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">TuMeConnaisVraiment <span class="emoji">🎉</span></div>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <div>Made with ❤️ — Waz-moi</div>
+    <div class="small">© <%= new Date().getFullYear() %></div>
+  </footer>
+
+  <script src="/js/quiz.js" defer></script>
+</body>
+</html>
