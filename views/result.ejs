@@ -1,0 +1,19 @@
+<% layout('layout', { title: 'Résultat — TuMeConnaisVraiment' }) %>
+
+<section class="card center">
+  <h1>Résultat</h1>
+  <p><strong><%= responder_name %></strong>, vous avez obtenu</p>
+  <div class="large-score"><%= score %> / <%= total %></div>
+
+  <div class="share">
+    <p>Partagez le résultat :</p>
+    <a class="btn" href="https://api.whatsapp.com/send?text=<%= encodeURIComponent('J\'ai obtenu ' + score + '/' + total + ' sur TuMeConnaisVraiment! '+ (location ? location.href : '')) %>" target="_blank">Partager sur WhatsApp</a>
+    <a class="btn" href="/quiz/<%= quizId %>">Reprendre le quiz</a>
+    <a class="btn" href="/quiz/<%= quizId %>/leaderboard">Voir le tableau des scores</a>
+  </div>
+
+  <div class="ad-placeholder">
+    <!-- AD SLOTS: remplacez par le code AdSense ou autre régie publicitaire -->
+    <div class="ad-box">Espace pub (AdSense) — insérez votre code ici</div>
+  </div>
+</section>
