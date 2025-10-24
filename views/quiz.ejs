@@ -1,0 +1,51 @@
+<% layout('layout', { title: quiz.title + ' — Répondre' }) %>
+
+<section class="card">
+  <h1><%= quiz.title %></h1>
+  <p class="muted">Créé par <strong><%= quiz.author_name %></strong></p>
+
+  <form id="quiz-form" action="/quiz/<%= quiz.id %>/submit" method="post">
+    <label>Votre prénom (optionnel)
+      <input type="text" name="responder_name" placeholder="Ex : Marie" maxlength="120" />
+    </label>
+
+    <div id="progress" class="progress"><div class="bar" style="width:0%"></div></div>
+
+    <% questions.forEach(function(q, qi) { %>
+      <fieldset class="question" data-index="<%= qi %>">
+        <legend><span class="emoji">❓</span> <%= (qi+1) %>. <%= q.text %></legend>
+        <% q.choices.forEach(function(c) { %>
+          <label class="choice">
+            <input required type="radio" name="answer_<%= q.id %>" value="<%= c.id %>" />
+            <span><%= c.text %></span>
+          </label>
+        <% }) %>
+      </fieldset>
+    <% }) %>
+
+    <div class="controls">
+      <button type="submit" class="btn primary">Envoyer mes réponses 🎯</button>
+      <a class="btn" href="/quiz/<%= quiz.id %>/leaderboard">Voir le tableau des scores 🏆</a>
+    </div>
+  </form>
+</section>
+
+<script>
+  // Enhance UX: per-question progress and smooth scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const fieldsets = Array.from(document.querySelectorAll('.question'));
+    const total = fieldsets.length;
+    const bar = document.querySelector('#progress .bar');
+
+    function updateProgress() {
+      const answered = fieldsets.filter(f => {
+        return f.querySelector('input[type=radio]:checked') != null;
+      }).length;
+      const pct = Math.round((answered / total) * 100);
+      bar.style.width = pct + '%';
+    }
+
+    document.getElementById('quiz-form').addEventListener('change', updateProgress);
+    updateProgress();
+  });
+</script>
