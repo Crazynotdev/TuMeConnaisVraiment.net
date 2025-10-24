@@ -1,0 +1,25 @@
+<% layout('layout', { title: 'Quiz créé — TuMeConnaisVraiment' }) %>
+
+<section class="card center">
+  <h1>Quiz créé 🎉</h1>
+  <p><strong>Titre :</strong> <%= title %></p>
+  <p><strong>Auteur :</strong> <%= author_name %></p>
+
+  <div class="share">
+    <input readonly value="<%= shareUrl %>" id="share-link" />
+    <div class="share-buttons">
+      <a class="btn" href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(shareUrl) %>" target="_blank" rel="noopener">Partager sur WhatsApp</a>
+      <button class="btn" onclick="copyLink()">Copier le lien</button>
+      <a class="btn" href="<%= shareUrl %>">Voir le quiz</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyLink() {
+    const el = document.getElementById('share-link');
+    el.select();
+    document.execCommand('copy');
+    alert('Lien copié ✅');
+  }
+</script>
