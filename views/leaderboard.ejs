@@ -1,0 +1,30 @@
+<% layout('layout', { title: 'Tableau des scores — ' + quiz.title }) %>
+
+<section class="card">
+  <h1>Tableau des scores — <%= quiz.title %></h1>
+  <p class="muted">Quiz créé par <strong><%= quiz.author_name %></strong></p>
+
+  <% if (subs.length === 0) { %>
+    <p>Aucune réponse pour l'instant. Partagez votre quiz pour recevoir des réponses !</p>
+  <% } else { %>
+    <table class="leaderboard">
+      <thead>
+        <tr><th>Nom</th><th>Score</th><th>Répondu le</th></tr>
+      </thead>
+      <tbody>
+        <% subs.forEach(function(s) { %>
+          <tr>
+            <td><%= s.responder_name %></td>
+            <td><%= s.score %> / <%= s.total %></td>
+            <td><%= new Date(s.created_at).toLocaleString('fr-FR') %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <div class="controls">
+    <a class="btn" href="/">Créer un nouveau quiz</a>
+    <a class="btn" href="/quiz/<%= quiz.id %>">Voir le quiz</a>
+  </div>
+</section>
