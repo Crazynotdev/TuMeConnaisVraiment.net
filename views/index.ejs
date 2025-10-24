@@ -1,0 +1,30 @@
+<% layout('layout', { title: 'Créer un quiz — TuMeConnaisVraiment' }) %>
+
+<section class="card">
+  <h1>Créer votre quiz personnel</h1>
+  <p>Entrez votre nom et ajoutez entre <strong><%= minQuestions %></strong> et <strong><%= maxQuestions %></strong> questions. Chaque question doit avoir au moins 2 choix et une réponse correcte.</p>
+
+  <form id="create-form" action="/create" method="post" autocomplete="off">
+    <label>Votre nom
+      <input required type="text" name="author_name" placeholder="Ex : Lucas" maxlength="120" />
+    </label>
+
+    <label>Titre du quiz (optionnel)
+      <input type="text" name="title" placeholder="Ex : Connais-tu vraiment Julie ?" maxlength="200" />
+    </label>
+
+    <div id="questions"></div>
+
+    <div class="controls">
+      <button type="button" id="add-question" class="btn">Ajouter une question ➕</button>
+      <button type="submit" class="btn primary">Créer le quiz 🚀</button>
+    </div>
+  </form>
+
+  <div class="hint">Astuce : partagez le lien sur WhatsApp ou Instagram Stories !</div>
+</section>
+
+<script>
+  // Pass config to client script
+  window.WMC = { minQuestions: <%= minQuestions %>, maxQuestions: <%= maxQuestions %> };
+</script>
